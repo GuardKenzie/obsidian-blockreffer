@@ -83,6 +83,10 @@ export default class Blockreffer extends Plugin {
 			if (cache && cache.blocks) {
 				const fileContent = await app.vault.cachedRead(file);
 
+				const aliases = cache.frontmatter && cache.frontmatter.aliases ?
+					cache.frontmatter.aliases :
+					[];
+
 				for (const [id] of Object.entries(cache.blocks)) {
 					const blockContent = fileContent.slice(
 						cache.blocks[id].position.start.offset,
@@ -92,6 +96,7 @@ export default class Blockreffer extends Plugin {
 						file: file,
 						id: id,
 						content: blockContent.trim(),
+						aliases: aliases
 					});
 				}
 			}
@@ -113,6 +118,7 @@ interface BlockSuggestion {
 	file: TFile;
 	id: string;
 	content: string;
+	aliases: string[];
 }
 
 type BlockRefAction = "embed" | "open";
