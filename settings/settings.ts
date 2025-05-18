@@ -23,6 +23,9 @@ export interface BlockrefferSettings {
 
         /** Whether to search for matches by file ID. */
         id: boolean;
+
+        /** Whether to search for matches by file aliases. */
+        aliases: boolean;
     };
 
     /** Maximum number of search results to display. */
@@ -43,7 +46,8 @@ export const DEFAULT_SETTINGS: BlockrefferSettings = {
     toSearch: {
         content: true, 
         path: true, 
-        id: true
+        id: true,
+		aliases: true
     },
     searchLimit: 10,
     removeIdFromContent: true,

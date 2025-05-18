@@ -168,5 +168,16 @@ export class BlockrefferSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                 })
             );
+
+		new Setting(containerEl)
+			.setName("File aliases")
+            .setDesc("Search for file aliases.")
+			.addToggle(toggle => toggle
+                .setValue(this.plugin.settings.toSearch.aliases)
+                .onChange(async (value) => {
+                    this.plugin.settings.toSearch.aliases = value
+                    await this.plugin.saveSettings();
+                })
+            );
 	}
 }
