@@ -186,6 +186,7 @@ class BlockSearchModal extends FuzzySuggestModal<BlockSuggestion> {
 		if (this.plugin.settings.toSearch.content) toSearch.push(item.content.replace(`^${item.id}`, "").trim());
 		if (this.plugin.settings.toSearch.path   ) toSearch.push(item.file.path);
 		if (this.plugin.settings.toSearch.id     ) toSearch.push(item.id);
+		if (this.plugin.settings.toSearch.aliases) toSearch.push(item.aliases.join(" "))
 
 		return toSearch.join(" ");
 	}
