@@ -181,13 +181,13 @@ class BlockSearchModal extends FuzzySuggestModal<BlockSuggestion> {
 
 	// fuzzy-searchable content
 	getItemText(item: BlockSuggestion): string {
-		let toSearch = ""
+		const toSearch = []
 
-		if (this.plugin.settings.toSearch.content) toSearch += item.content.replace(`^${item.id}`, "").trim();
-		if (this.plugin.settings.toSearch.path   ) toSearch += item.file.path;
-		if (this.plugin.settings.toSearch.id     ) toSearch += item.id;
+		if (this.plugin.settings.toSearch.content) toSearch.push(item.content.replace(`^${item.id}`, "").trim());
+		if (this.plugin.settings.toSearch.path   ) toSearch.push(item.file.path);
+		if (this.plugin.settings.toSearch.id     ) toSearch.push(item.id);
 
-		return toSearch;
+		return toSearch.join(" ");
 	}
 
 	renderSuggestion({ item }: FuzzyMatch<BlockSuggestion>, el: HTMLElement) {
